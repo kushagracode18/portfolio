@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kushagra Prajapati — Portfolio</title>
+<meta name="description" content="Kushagra Prajapati — AI & web developer and UI/UX designer from Lucknow. Projects, hackathons and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE   studio-grade and professional, quietly confident
+IDEA    a design-studio site (Oxnod reference) where the studio is one student builder
+PICTURE stacked project cards with generated covers, tool-tile wall, giant footer name
+COLOUR  paper #f2f2f0 and near-black sections alternating, one signal red accent
+TYPE    Urbanist for everything readable, DM Mono uppercase for labels and buttons
+LAYOUT  hero → tools → about+stats → marquee → projects (dark, stacking) → what I do → log → FAQ → contact (dark) → footer
+*/
+:root{color-scheme:light;
+  --paper:#f2f2f0;--white:#fff;--ink:#0e0e0e;--grey:#a3a3a0;--mute:#6b6b68;--line:#e0e0dc;
+  --dark:#0f0f0f;--dark2:#171717;--dline:#262626;--dmute:#8e8e8a;--red:#e8321f;
+  --f:"Urbanist",system-ui,sans-serif;--m:"DM Mono",ui-monospace,monospace;--pad:max(4vw,18px)}
+*{box-sizing:border-box;min-width:0}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--f);overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+.lbl{display:inline-flex;align-items:center;gap:9px;font:500 12.5px/1 var(--m);text-transform:uppercase;letter-spacing:.02em}
+.lbl svg{width:14px;height:14px;color:var(--red);flex:none}
+.shead{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:22px;border-top:1px solid var(--line);margin-bottom:34px}
+.dk .shead{border-color:var(--dline)}
+.big{font:500 clamp(30px,4.2vw,58px)/1.14 var(--f);letter-spacing:-.025em;margin:0;max-width:22ch;text-wrap:balance}
+.fill .wd{color:var(--grey);transition:color .35s}
+.dk .fill .wd{color:#4a4a48}
+.fill .wd.on{color:inherit}
+
+/* split button */
+.sb{display:inline-flex;align-items:stretch;height:46px;cursor:pointer;border:0;background:none;padding:0}
+.sb i{width:46px;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:7px 0 0 7px;clip-path:polygon(0 0,100% 0,78% 100%,0 100%);font-style:normal;transition:background .25s}
+.sb span{display:flex;align-items:center;padding:0 24px 0 30px;margin-left:-6px;background:var(--ink);color:#fff;border-radius:0 7px 7px 0;clip-path:polygon(14px 0,100% 0,100% 100%,0 100%);font:500 13px/1 var(--m);text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;transition:background .25s}
+.sb:hover i,.sb:hover span{background:var(--red)}
+.sb.light i,.sb.light span{background:#fff;color:var(--ink)}
+.sb.light:hover i,.sb.light:hover span{background:var(--red);color:#fff}
+.sb.red i,.sb.red span{background:var(--red)}
+.sb.red:hover i,.sb.red:hover span{background:var(--ink)}
+.sb svg{width:16px;height:16px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d,0)*90ms)}
+.rv.in{opacity:1;transform:none}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(242,242,240,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.sc{border-color:var(--line)}
+.nav{transition:border-color .3s,background .3s,color .3s}
+.nav.ondk{background:rgba(15,15,15,.82);color:#fff;border-color:var(--dline)}
+.nav.ondk .sb i,.nav.ondk .sb span{background:#fff;color:var(--ink)}
+.nav.ondk .sb:hover i,.nav.ondk .sb:hover span{background:var(--red);color:#fff}
+.nav.ondk .menu{background:#fff;color:var(--ink)}
+.nav.ondk.open ul{background:var(--dark)}.nav.ondk.open ul a{border-color:var(--dline)}
+.nav .wrap{display:flex;align-items:center;gap:24px;min-height:74px}
+.logo{font:700 24px/1 var(--f);letter-spacing:-.04em;display:flex;align-items:center;gap:2px}
+.logo b{color:var(--red)}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{font-weight:500;font-size:16px;position:relative}
+.nav ul a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1.5px;background:var(--red);transition:right .3s}
+.nav ul a:hover::after,.nav ul a.on::after{right:0}
+.menu{display:none;margin-left:auto;width:46px;height:46px;border-radius:8px;background:var(--ink);color:#fff;border:0;cursor:pointer}
+@media(max-width:900px){.nav ul,.nav .sb{display:none}.menu{display:grid;place-items:center}
+  .nav.open ul{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:74px;background:var(--paper);padding:10px var(--pad) 24px;gap:0;border-bottom:1px solid var(--line)}
+  .nav.open ul a{display:block;padding:14px 0;font-size:24px;font-weight:600;border-bottom:1px solid var(--line)}}
+
+/* hero */
+.hero{padding-top:clamp(40px,6vw,80px)}
+.hero-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--mute)}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pu 2s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(232,50,31,.5)}70%{box-shadow:0 0 0 8px rgba(232,50,31,0)}100%{box-shadow:none}}
+.hero h1{font:500 clamp(46px,8.2vw,128px)/.96 var(--f);letter-spacing:-.045em;margin:34px 0 0;max-width:13ch}
+.hero h1 em{font-style:normal;color:var(--grey)}
+.hero-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:clamp(28px,5vw,80px);align-items:end;margin-top:clamp(32px,4vw,56px)}
+.hero-row p{font-size:clamp(17px,1.4vw,20px);color:var(--mute);margin:0 0 28px;max-width:48ch}
+.hero-row p b{color:var(--ink);font-weight:600}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.now{background:var(--dark);color:#fff;border-radius:14px;overflow:hidden;display:grid;grid-template-columns:150px minmax(0,1fr)}
+.now .art{aspect-ratio:1}
+.now .art svg{width:100%;height:100%;display:block}
+.now div:last-child{padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.now small{font:500 11.5px/1 var(--m);text-transform:uppercase;color:var(--dmute)}
+.now strong{font:600 26px/1.05 var(--f);letter-spacing:-.02em;transition:opacity .3s}
+.now p{margin:0;font-size:14.5px;color:#c9c9c5;transition:opacity .3s}
+.now .x{opacity:0}
+@media(max-width:860px){.hero-row{grid-template-columns:1fr}}
+@media(max-width:420px){.now{grid-template-columns:110px minmax(0,1fr)}}
+
+/* tool wall */
+.tools{margin:clamp(56px,7vw,100px) 0 0;display:grid;gap:12px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);overflow:hidden}
+.trow{display:flex;gap:12px;width:max-content;animation:tw 60s linear infinite}
+.trow.r{animation-direction:reverse;animation-duration:70s}
+@keyframes tw{to{transform:translateX(-50%)}}
+.tile{width:170px;height:84px;flex:none;border-radius:10px;background:var(--white);display:grid;place-items:center;font-size:19px;color:var(--ink);border:1px solid var(--line)}
+.tile.s1{font-weight:700;letter-spacing:-.03em}.tile.s2{font-family:var(--m);font-size:15px}.tile.s3{font-weight:300;font-size:21px}.tile.s4{font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:16px}
+
+/* sections */
+section{padding:clamp(80px,10vw,140px) 0}
+.about-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(32px,6vw,100px);align-items:end}
+.stats{display:grid;grid-template-columns:1fr 1fr}
+.stats div{padding:20px 0 26px;border-top:1px solid var(--line)}
+.stats div:nth-child(odd){padding-right:20px}
+.stats small{display:block;font-size:15px;color:var(--mute);margin-bottom:6px}
+.stats strong{font:400 clamp(40px,4.4vw,62px)/1 var(--f);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.lead-list{margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lead{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+.lead small{font:500 11.5px/1 var(--m);text-transform:uppercase;color:var(--red)}
+.lead h3{margin:10px 0 4px;font-size:22px;font-weight:600;letter-spacing:-.015em}
+.lead p{margin:0;color:var(--mute);font-size:15.5px}
+@media(max-width:860px){.about-g,.lead-list{grid-template-columns:1fr}}
+
+.marq{overflow:hidden;padding:clamp(30px,4vw,50px) 0;border-block:1px solid var(--line)}
+.mtrack{display:flex;width:max-content;animation:tw 38s linear infinite}
+.mtrack span{font:600 clamp(56px,9vw,140px)/1 var(--f);letter-spacing:-.04em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center}
+.mtrack b{color:var(--red);font-weight:300;font-size:.35em;margin:0 .7em}
+
+/* dark projects */
+.dk{background:var(--dark);color:#fff}
+.dk .lbl{color:#fff}
+.dk .big{max-width:18ch}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,70px)}
+.cards{position:relative}
+.card{position:sticky;top:calc(96px + var(--i)*16px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:0;background:var(--dark2);border:1px solid var(--dline);border-radius:16px;overflow:hidden;margin-bottom:28px;min-height:min(560px,76vh);box-shadow:0 -20px 50px -20px rgba(0,0,0,.7)}
+.ci{padding:clamp(22px,3vw,36px);display:flex;flex-direction:column}
+.ct{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cn{display:flex;align-items:center;gap:10px;font:600 clamp(24px,2.4vw,32px)/1 var(--f);letter-spacing:-.02em}
+.cn i{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none}
+.cd{font:500 12px/1 var(--m);text-transform:uppercase;color:var(--dmute);white-space:nowrap}
+.cdesc{color:#bdbdb8;margin:18px 0 6px;max-width:46ch;font-size:16px}
+.cf{border-top:1px solid var(--dline);padding:14px 0}
+.cf:first-of-type{margin-top:16px}
+.cf small{display:block;font:500 11.5px/1 var(--m);text-transform:uppercase;color:var(--dmute);margin-bottom:7px}
+.cf div{font-size:16px}
+.cl{margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;gap:20px}
+.cl a,.cl span{font:500 13px/1 var(--m);text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;padding-bottom:4px;border-bottom:1px solid currentColor}
+.cl a:hover{color:var(--red)}
+.cl span{color:var(--dmute);border:0}
+.cimg{position:relative;overflow:hidden;border-left:1px solid var(--dline)}
+.cimg svg{position:absolute;inset:0;width:100%;height:100%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.card:hover .cimg svg{transform:scale(1.04)}
+.badge{position:absolute;left:16px;top:16px;font:500 11.5px/1 var(--m);text-transform:uppercase;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink);display:flex;align-items:center;gap:7px}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--bc)}
+@media(max-width:860px){.card{position:relative;top:0;grid-template-columns:1fr;min-height:0}.cimg{order:-1;aspect-ratio:4/3;border:0;border-bottom:1px solid var(--dline)}}
+.more-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px;margin-top:60px}
+.mc{background:var(--dark2);border:1px solid var(--dline);border-radius:14px;overflow:hidden;transition:border-color .3s,transform .3s}
+.mc:hover{border-color:#444;transform:translateY(-3px)}
+.mc .a{aspect-ratio:16/10;position:relative}
+.mc .a svg{width:100%;height:100%;display:block}
+.mc div:last-child{padding:18px 20px 20px}
+.mc h4{margin:0 0 6px;font-size:21px;font-weight:600;letter-spacing:-.015em}
+.mc p{margin:0;color:#a9a9a4;font-size:15px}
+.mc .cd{display:block;margin-top:14px}
+
+/* what I do */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sv{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column}
+.sv svg.ic{width:22px;height:22px;color:var(--red)}
+.sv h3{margin:16px 0 6px;font-size:26px;font-weight:600;letter-spacing:-.02em}
+.sv>p{margin:0;color:var(--mute);font-size:15.5px}
+.sv ul{list-style:none;padding:20px 0;margin:20px 0 0;border-top:1px solid var(--line);display:grid;gap:11px;font-size:15.5px}
+.sv li{display:flex;gap:10px;align-items:flex-start}
+.sv li::before{content:"";width:14px;height:8px;border-left:1.6px solid var(--ink);border-bottom:1.6px solid var(--ink);transform:rotate(-45deg) translateY(2px);flex:none;margin-top:5px}
+.sv .ev{margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+.sv .ev small{font:500 11.5px/1 var(--m);text-transform:uppercase;color:var(--mute)}
+.sv .ev div{font-size:30px;font-weight:500;letter-spacing:-.02em;margin:6px 0 16px;line-height:1.1}
+.sv .go{display:block;text-align:center;padding:15px;border-radius:8px;background:var(--ink);color:#fff;font:500 13px/1 var(--m);text-transform:uppercase;transition:background .25s}
+.sv .go:hover{background:var(--red)}
+.sv.hot .go{background:var(--red)}.sv.hot .go:hover{background:var(--ink)}
+@media(max-width:960px){.svc{grid-template-columns:1fr}}
+
+/* log */
+.log{border-top:1px solid var(--line)}
+.lr{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.6fr) minmax(0,1.1fr);gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);transition:padding .3s,background .3s}
+.lr:hover{padding-left:14px;background:var(--white)}
+.lr h3{margin:0;font-size:clamp(19px,1.7vw,24px);font-weight:600;letter-spacing:-.015em}
+.res{font:500 12.5px/1 var(--m);text-transform:uppercase;padding:8px 12px;border-radius:999px;border:1px solid var(--line);justify-self:start;white-space:nowrap;background:var(--white)}
+.res.win{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lr p{margin:0;color:var(--mute);font-size:15.5px}
+@media(max-width:760px){.lr{grid-template-columns:1fr;gap:8px}}
+
+/* faq */
+.faq-g{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,100px)}
+.faq-g h2{font:500 clamp(34px,3.8vw,52px)/1.08 var(--f);letter-spacing:-.025em;margin:0}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;background:none;border:0;cursor:pointer;text-align:left;font-size:clamp(18px,1.5vw,21px);font-weight:500}
+.qa button svg{width:18px;height:18px;flex:none;transition:transform .35s}
+.qa.open button svg{transform:rotate(45deg)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{margin:0 0 22px;color:var(--mute);max-width:60ch}
+@media(max-width:860px){.faq-g{grid-template-columns:1fr}}
+
+/* contact */
+.contact{position:relative;isolation:isolate;overflow:hidden}
+.contact svg.mtn{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.ct-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:clamp(32px,6vw,100px);align-items:start}
+.ct-g h2{font:500 clamp(40px,5vw,70px)/1.02 var(--f);letter-spacing:-.035em;margin:0}
+.ct-g>div>p{color:#c7c7c2;max-width:44ch;margin:20px 0 0}
+.me{display:flex;align-items:center;gap:16px;margin-top:44px}
+.av{width:84px;height:84px;border-radius:12px;background:linear-gradient(135deg,#2a2a2a,#111);border:1px solid #333;display:flex;align-items:center;justify-content:center;font:700 30px/1 var(--f);letter-spacing:-.04em}
+.av b{color:var(--red)}
+.me strong{display:block;font-size:20px;font-weight:600}
+.me small{font:500 11.5px/1 var(--m);text-transform:uppercase;color:var(--dmute)}
+.mailrow{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.mailrow a{font-size:18px;font-weight:500;border-bottom:1px solid #555;overflow-wrap:anywhere}
+.mailrow a:hover{border-color:var(--red);color:#fff}
+form{background:rgba(15,15,15,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--dline);border-radius:16px;padding:clamp(20px,3vw,32px)}
+label{display:block;font-weight:600;font-size:16px;margin-bottom:18px}
+label sup{color:var(--red)}
+input,textarea{display:block;width:100%;margin-top:6px;background:transparent;border:0;border-bottom:1px solid #3a3a3a;padding:10px 0;font-size:16px;color:#fff;outline:none;transition:border-color .25s;resize:vertical}
+input::placeholder,textarea::placeholder{color:#777}
+input:focus,textarea:focus{border-color:var(--red)}
+.send{width:100%;margin-top:8px;padding:17px;border-radius:8px;background:var(--red);color:#fff;border:0;cursor:pointer;font:500 13px/1 var(--m);text-transform:uppercase;letter-spacing:.03em;transition:background .25s}
+.send:hover{background:#fff;color:var(--ink)}
+.fnote{font-size:13.5px;color:var(--dmute);margin:14px 0 0}
+@media(max-width:900px){.ct-g{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--dark);color:#fff;padding:clamp(56px,7vw,90px) 0 26px;border-top:1px solid var(--dline)}
+.ft{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,.6fr));gap:32px}
+.ft p{color:#bdbdb8;max-width:36ch;margin:16px 0 0}
+.dots{display:flex;gap:5px}.dots i{width:16px;height:16px;border-radius:50%;background:#fff}.dots i:nth-child(1){border-radius:3px}.dots i:nth-child(2){background:var(--red)}
+.ft h4{font:500 12px/1 var(--m);text-transform:uppercase;color:var(--dmute);margin:4px 0 16px}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.ft a:hover{color:var(--red)}
+.giant{overflow:hidden;font:900 clamp(60px,16vw,290px)/.8 var(--f);letter-spacing:-.06em;color:#191919;text-align:center;margin:60px 0 26px;white-space:nowrap;user-select:none}
+.fb{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--dmute);font-size:15px;padding-top:20px;border-top:1px solid var(--dline)}
+@media(max-width:860px){.ft{grid-template-columns:1fr 1fr}}
+.fab{position:fixed;right:18px;bottom:18px;z-index:25;width:48px;height:48px;border-radius:10px;background:var(--ink);color:#fff;border:1px solid #333;display:grid;place-items:center;font:700 15px/1 var(--f);letter-spacing:-.03em;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,background .25s}
+.fab.on{opacity:1;pointer-events:auto}.fab:hover{background:var(--red)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:var(--ink);color:#fff;padding:12px 20px;border-radius:8px;font-weight:600;display:none}
+.toast.on{display:block}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.fill .wd{color:inherit!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l2.2 7.8L22 11l-7.8 2.2L12 21l-2.2-7.8L2 11l7.8-2.2z"/></symbol>
+  <symbol id="arr" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M4 12h13M12 5l7 7-7 7M21 4v16"/></symbol>
+</svg>
+
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top">kushagra<b>.</b></a>
+  <ul id="menuList">
+    <li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#services">What I do</a></li><li><a href="#log">Hackathons</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="sb" href="#contact"><i><svg><use href="#arr"/></svg></i><span>Let's talk</span></a>
+  <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 17h18"/></svg></button>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div class="hero-meta">
+    <span class="lbl"><span class="pulse"></span>Open to agentic / gen-AI internships</span>
+    <span class="lbl" id="clock">Lucknow, IN</span>
+  </div>
+  <h1 class="rv">I design, build &amp; ship <em>AI-powered products.</em></h1>
+  <div class="hero-row">
+    <div class="rv" style="--d:1">
+      <p>I'm <b>Kushagra Prajapati</b>, a B.Tech CSE (AI) student at the University of Lucknow. I take ideas from Figma wireframes to deployed websites, and lately to multi-agent systems, RAG and local LLMs.</p>
+      <div class="btns">
+        <a class="sb" href="#projects"><i><svg><use href="#arr"/></svg></i><span>View projects</span></a>
+        <button class="sb light" id="copyTop" type="button" style="border:1px solid var(--line);border-radius:8px"><i><svg><use href="#arr"/></svg></i><span>Copy email</span></button>
+      </div>
+    </div>
+    <a class="now rv" style="--d:2" href="#projects" id="nowCard" aria-label="Currently building">
+      <div class="art" id="nowArt"></div>
+      <div><small>Currently building</small><strong id="nowName">INDRA-X</strong><p id="nowDesc"></p></div>
+    </a>
+  </div>
+</div>
+<div class="tools" aria-label="Tools I use"><div class="trow" id="tr1"></div><div class="trow r" id="tr2"></div></div>
+
+<section id="about"><div class="wrap">
+  <div class="shead"><span class="lbl"><svg><use href="#spark"/></svg>About me</span><span class="lbl">@kushagracode18</span></div>
+  <div class="about-g">
+    <div>
+      <p class="big fill">I'm a developer, designer and AI enthusiast who turns problems around me into working products, from student platforms to offline AI for industry.</p>
+      <div style="margin-top:34px"><a class="sb" href="#log"><i><svg><use href="#arr"/></svg></i><span>See my hackathons</span></a></div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="lead-list">
+    <div class="lead rv"><small>Co-Lead</small><h3>Avishkaar, The AI Club</h3><p>Co-founding the AI club at FoET, University of Lucknow: workshops, research and using AI to automate research.</p></div>
+    <div class="lead rv" style="--d:1"><small>Team leader</small><h3>FOCUS-X</h3><p>Leading a three-person hackathon team across national and state competitions, from problem choice to pitch.</p></div>
+  </div>
+</div></section>
+
+<div class="marq" aria-hidden="true"><div class="mtrack" id="mq"></div></div>
+
+<section class="dk" id="projects"><div class="wrap">
+  <div class="shead"><span class="lbl"><svg><use href="#spark"/></svg>My projects</span><span class="lbl" id="pcount"></span></div>
+  <div class="proj-head">
+    <p class="big fill">Projects with real problems behind them, and real code to prove it.</p>
+    <a class="sb light" href="https://github.com/kushagracode18" target="_blank" rel="noopener"><i><svg><use href="#arr"/></svg></i><span>GitHub profile</span></a>
+  </div>
+  <div class="cards" id="cards"></div>
+  <div class="shead" style="margin:90px 0 0"><span class="lbl"><svg><use href="#spark"/></svg>More builds &amp; experiments</span><span class="lbl">Lab</span></div>
+  <div class="more-g" id="more"></div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <div class="shead"><span class="lbl"><svg><use href="#spark"/></svg>What I do</span><span class="lbl">@kushagracode18</span></div>
+  <div class="proj-head" style="margin-bottom:50px">
+    <p class="big fill" style="color:var(--ink)">Three things I'm good at, and the work that proves each one.</p>
+    <a class="sb" href="#contact"><i><svg><use href="#arr"/></svg></i><span>Work with me</span></a>
+  </div>
+  <div class="svc" id="svc"></div>
+</div></section>
+
+<section id="log" style="padding-top:0"><div class="wrap">
+  <div class="shead"><span class="lbl"><svg><use href="#spark"/></svg>Hackathons &amp; competitions</span><span class="lbl">Team FOCUS-X</span></div>
+  <p class="big fill" style="margin-bottom:50px">Building under a deadline is how I learn fastest.</p>
+  <div class="log" id="logList"></div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+  <div class="shead"><span class="lbl"><svg><use href="#spark"/></svg>Quick answers</span><span class="lbl">For recruiters</span></div>
+  <div class="faq-g">
+    <h2 class="rv">Before you reach out, here's what matters</h2>
+    <div id="faqList"></div>
+  </div>
+</div></section>
+
+<section class="dk contact" id="contact">
+  <svg class="mtn" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3b3a"/><stop offset=".6" stop-color="#1a1a1a"/><stop offset="1" stop-color="#0f0f0f"/></linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0f0f0f" stop-opacity=".92"/><stop offset=".55" stop-color="#0f0f0f" stop-opacity=".35"/><stop offset="1" stop-color="#0f0f0f" stop-opacity=".75"/></linearGradient></defs>
+    <rect width="1440" height="900" fill="url(#sky)"/>
+    <path d="M0 520 L160 430 L260 470 L420 300 L520 380 L640 250 L760 360 L880 210 L980 330 L1100 260 L1240 380 L1440 300 L1440 900 L0 900Z" fill="#2a2a29"/>
+    <path d="M0 620 L180 520 L330 580 L470 470 L600 560 L760 440 L900 540 L1040 470 L1180 560 L1320 500 L1440 560 L1440 900 L0 900Z" fill="#1f1f1e"/>
+    <path d="M0 720 L200 640 L380 700 L560 620 L740 700 L920 640 L1100 710 L1280 650 L1440 700 L1440 900 L0 900Z" fill="#161616"/>
+    <ellipse cx="760" cy="560" rx="700" ry="60" fill="#5a5a58" opacity=".18"/>
+    <rect width="1440" height="900" fill="url(#fade)"/>
+  </svg>
+  <div class="wrap">
+    <div class="shead"><span class="lbl"><svg><use href="#spark"/></svg>Get started now</span><span class="lbl">@kushagracode18</span></div>
+    <div class="ct-g">
+      <div>
+        <h2>Let's build something people remember.</h2>
+        <p>Internships, freelance builds or a hackathon team: tell me what you're working on and I'll reply by email.</p>
+        <div class="mailrow"><a href="mailto:kushagraprajapati2005@gmail.com" id="mail">kushagraprajapati2005@gmail.com</a><button class="sb light" id="copyBot" type="button"><i><svg><use href="#arr"/></svg></i><span>Copy</span></button></div>
+        <div class="me"><div class="av">K<b>P</b></div><div><strong>Kushagra Prajapati</strong><small>AI &amp; web developer · UI/UX</small></div></div>
+      </div>
+      <form id="form" novalidate>
+        <label>Name<sup>*</sup><input name="name" required placeholder="Full name" autocomplete="name"></label>
+        <label>Email<sup>*</sup><input name="email" type="email" required placeholder="Email address" autocomplete="email"></label>
+        <label>Company / college<input name="org" placeholder="Where you're writing from"></label>
+        <label>Message<sup>*</sup><textarea name="msg" rows="3" required placeholder="Leave a message"></textarea></label>
+        <button class="send" type="submit">Send message</button>
+        <p class="fnote" id="fnote">Opens your email app with the message ready. If it doesn't open, the message is copied so you can paste it.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <div class="ft">
+    <div><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><p>AI &amp; web developer and UI/UX designer from Lucknow. Open to agentic and gen-AI internships.</p></div>
+    <div><h4>Sections</h4><ul><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#services">What I do</a></li><li><a href="#log">Hackathons</a></li></ul></div>
+    <div><h4>Projects</h4><ul id="fproj"></ul></div>
+    <div><h4>Elsewhere</h4><ul id="fsoc"></ul></div>
+  </div>
+  <div class="giant" aria-hidden="true">KUSHAGRA</div>
+  <div class="fb"><span>© 2026 Kushagra Prajapati · Lucknow, India</span><span>Designed &amp; built by me</span></div>
+</div></footer>
+<button class="fab" id="fab" aria-label="Back to top">KP</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+{
+/* ======== EDIT HERE ======== */
+const CONFIG = { email:"kushagraprajapati2005@gmail.com", github:"https://github.com/kushagracode18", linkedin:"" /* TODO */, resume:"" /* TODO */ };
+
+const PROJECTS = [
+  { id:"backbench", name:"Backbench", featured:true, color:"#c6ff3d", status:"live", category:"Student platform",
+    one:"A student-run platform for FoET, University of Lucknow: assignment help and placement prep in one place, with email-OTP login and required student profiles.",
+    role:"Built the tech end to end · UI/UX by Rishabh", stack:"Vercel · Resend email OTP · custom domain",
+    live:"https://www.backbeench.in", github:null, note:"Source private" },
+  { id:"indrax", name:"INDRA-X", featured:true, color:"#ff7a45", status:"building", category:"Industrial AI workbench",
+    one:"An air-gapped, terminal-first AI workbench for Indian plants: local multi-agent LLMs (Gemma 4) linked to a UE5 + ROS 2 digital twin, reading DCS/SCADA data only.",
+    role:"Team project · SIH 2026 (PS 117)", stack:"Gemma 4 · Multi-agent · Unreal Engine 5 · ROS 2 · Docker · ESP32",
+    live:null, github:null, note:"In progress" },
+  { id:"rasad", name:"RASAD", featured:true, color:"#8fd3ff", status:"live", category:"Defence logistics",
+    one:"Route-Aware Supply Anticipation & Dispatch: alerts when a forward post's supplies must leave before weather closes the road.",
+    role:"Team leader · FOCUS-X", stack:"Web app · Vercel",
+    live:"https://rasad-prototype.vercel.app", github:"https://github.com/kushagracode18/rasad-prototype" },
+  { id:"nivaran", name:"Nivaran", featured:true, color:"#9b8cff", status:"building", category:"GovTech · AI triage",
+    one:"An AI engine that takes in public grievances, triages them by urgency and routes each one to the right department, built for a CM Office use case.",
+    role:"FOCUS-X · AI Kaushal Hackathon, Dec 2026", stack:"LLMs · Classification · Routing pipeline",
+    live:null, github:null, note:"Idea submitted" },
+  { id:"bugmemory", name:"BugMemory", color:"#ff5c8a", status:"building", category:"AI dev tool", one:"An AI debugging coach for beginners that remembers the bugs you've already hit.", stack:"Next.js · FastAPI · Supabase · Groq" },
+  { id:"radar", name:"Hackathon Radar", color:"#c6ff3d", status:"building", category:"AI agent", one:"An agent that scans Unstop, HackCulture and others for hackathons by region and tracks deadlines.", stack:"AI agents · Automation" },
+  { id:"rag", name:"RAG Chatbot", color:"#3dffc6", status:"built", category:"LLM app", one:"A retrieval-augmented chatbot on an open-source LLM with LangChain.", stack:"LangChain · Vector DB" },
+  { id:"harness", name:"Universal AI Harness", color:"#c9ccd1", status:"building", category:"Enterprise AI", one:"Problem → workflow → agents → governed execution → verification. A hackathon prototype.", stack:"Agentic AI · Multi-agent" },
+  { id:"rakshak", name:"Rakshak", color:"#ffd23d", status:"concept", category:"AI safety", one:"A scam-call shield that flags voice-clone and 'digital arrest' calls and alerts family.", stack:"Voice AI · Detection" }
+];
+const STATUS = {live:["Live","#3ddc84"],building:["In progress","#ffb547"],built:["Built","#8aa2ff"],concept:["Concept","#9a9a9a"]};
+
+const SERVICES = [
+  { t:"Web development", d:"Fast, responsive websites, from CMS builds to custom platforms.", items:["WordPress & Wix builds","Responsive frontends","Auth, profiles & databases","Deploys on Vercel with custom domains"], evL:"Proof", ev:"Backbench, RASAD" },
+  { t:"AI & agents", d:"LLM features and agent workflows that do real work.", items:["Multi-agent systems","RAG with LangChain & vector DBs","Local models (Gemma 4)","AI automation & workflows"], evL:"Proof", ev:"INDRA-X, RAG Chatbot", hot:true },
+  { t:"UI/UX design", d:"Interfaces designed before they're coded.", items:["Wireframes & prototypes in Figma","Visual design in Canva","Pitch decks for hackathons","Design-to-development handoff"], evL:"Proof", ev:"Every project here" }
+];
+
+const LOG = [
+  ["Build with Bharat 4.0","Finalist",true,"Made it to the finals"],
+  ["Hacktober Hackfest","Top 4",true,"Placed in the top 4"],
+  ["Srijan 2K25","Top 5",true,"Placed in the top 5"],
+  ["Smart India Hackathon 2026","In progress",false,"INDRA-X · problem statement 117"],
+  ["InMobi AI Kaushal Hackathon","Submitted",false,"Nivaran · UP Govt × IIIT Lucknow, 8–9 Dec 2026"],
+  ["MLH Hacktoberfest Hack Day","Entered",false,"INDRA-X · Best Open-Source AI Project"],
+  ["NEXSUS Redstone Rush · CONTINUUM 2027","Round 1",false,"Predictive logistics for Army forward formations"],
+  ["Rajasthan Royals SupeRR Selector S2","Round 1",false,"IPL/T20I player analytics"],
+  ["Innovation & Project Exhibition","Exhibited",false,"RASAD at R.R Institute of Modern Technology, Nov 2026"]
+];
+
+const FAQ = [
+  ["What roles am I looking for?","Paid internships in agentic AI and gen AI: LLM / agentic AI intern, AI automation and workflows, or gen-AI developer. I'm also happy to take on UI/UX and web roles."],
+  ["Where can I work from?","Remote, or on-site in Lucknow."],
+  ["What's my strongest stack?","Python with LLM APIs, LangChain and RAG on the AI side; responsive frontends, WordPress/Wix and Vercel deploys on the web side; Figma for design."],
+  ["Can I see the code?","RASAD is public on GitHub. Backbench is live, but its main repo is private; a public showcase repo is planned. More is on my GitHub profile."],
+  ["Am I still a student?","Yes. B.Tech CSE (AI), 2nd year, University of Lucknow, graduating in 2029."],
+  ["Do I work well in teams?","I lead hackathon team FOCUS-X and I'm Co-Lead of Avishkaar, the AI club at my faculty."]
+];
+
+const TOOLS = ["Figma","Next.js","LangChain","Python","FastAPI","Supabase","Vercel","Docker","ROS 2","Unreal Engine 5","Gemma 4","WordPress","Wix","Canva","ESP32","Groq","LangGraph","CrewAI","GitHub","RAG"];
+
+const ART = {
+  backbench(c){let s="";for(let r=0;r<5;r++)for(let k=0;k<6;k++){const me=r===4&&k===4,x=40+k*56+r*6,y=50+r*40;s+=`<rect x="${x}" y="${y}" width="44" height="18" rx="3" fill="${me?c:"none"}" stroke="${me?c:"rgba(238,237,232,.3)"}"/>`}
+    return `<rect width="400" height="300" fill="#0f120a"/>${s}<text x="360" y="280" fill="${c}" font-family="Inter Tight,sans-serif" font-weight="700" font-size="22" text-anchor="end">backbeench.in</text>`},
+  indrax(c){let g="";for(let i=1;i<6;i++)g+=`<circle cx="280" cy="150" r="${i*22}" fill="none" stroke="rgba(255,122,69,${.1+i*.05})"/>`;
+    return `<rect width="400" height="300" fill="#120c09"/>${g}<path d="M280 150V60" stroke="${c}" stroke-width="2"/><path d="M60 250V190l50-40 40 25" fill="none" stroke="#eeede8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="190" r="7" fill="${c}"/><circle cx="110" cy="150" r="7" fill="${c}"/><rect x="40" y="250" width="40" height="12" fill="#eeede8"/><rect x="170" y="200" width="44" height="70" fill="none" stroke="rgba(238,237,232,.5)"/><rect x="171" y="232" width="42" height="37" fill="${c}" opacity=".7"/>`},
+  rasad(c){let p="";for(let i=0;i<9;i++){const y=40+i*28;p+=`<path d="M0 ${y}C90 ${y-30} 160 ${y+34} 250 ${y}S360 ${y-26} 400 ${y+6}" fill="none" stroke="rgba(143,211,255,${.14+i*.03})"/>`}
+    return `<rect width="400" height="300" fill="#081118"/>${p}<path d="M40 260C120 220 150 150 220 140S320 70 350 50" fill="none" stroke="${c}" stroke-width="3" stroke-dasharray="8 6"/><circle cx="40" cy="260" r="7" fill="#eeede8"/><circle cx="350" cy="50" r="9" fill="${c}"/>`},
+  nivaran(c){let t="";for(let i=0;i<14;i++)t+=`<rect x="${20+(i%7)*24+(i>6?12:0)}" y="${40+Math.floor(i/7)*22}" width="18" height="14" rx="2" fill="none" stroke="rgba(238,237,232,.5)"/>`;
+    return `<rect width="400" height="300" fill="#0d0b16"/>${t}<path d="M30 100L190 140v20L30 200Z" fill="rgba(155,140,255,.14)" stroke="rgba(155,140,255,.5)"/><circle cx="200" cy="150" r="14" fill="${c}"/>${[0,1,2].map(i=>`<path d="M200 150C260 150 260 ${80+i*70} 330 ${80+i*70}" fill="none" stroke="${i===1?c:"rgba(155,140,255,.45)"}" stroke-width="3"/><circle cx="340" cy="${80+i*70}" r="8" fill="${i===1?c:"rgba(155,140,255,.45)"}"/>`).join("")}`},
+  bugmemory(c){let l="";for(let i=0;i<9;i++)l+=`<rect x="${40+(i%3)*14}" y="${50+i*22}" width="${90+((i*53)%140)}" height="8" rx="4" fill="${i===5?c:"rgba(238,237,232,.2)"}"/>`;return `<rect width="400" height="300" fill="#140a0e"/>${l}<circle cx="320" cy="164" r="24" fill="none" stroke="${c}" stroke-width="3"/><circle cx="320" cy="164" r="7" fill="${c}"/>`},
+  radar(c){let r="";for(let i=1;i<5;i++)r+=`<circle cx="200" cy="150" r="${i*30}" fill="none" stroke="rgba(198,255,61,.22)"/>`;return `<rect width="400" height="300" fill="#0b0d08"/>${r}<path d="M200 150L320 90A130 130 0 0 1 330 150Z" fill="rgba(198,255,61,.22)"/><circle cx="250" cy="110" r="6" fill="${c}"/><circle cx="150" cy="190" r="5" fill="#eeede8"/>`},
+  rag(c){let d="";for(let i=0;i<24;i++)d+=`<circle cx="${180+(i*37)%90}" cy="${70+(i*53)%160}" r="4" fill="${i%5===0?c:"rgba(238,237,232,.45)"}"/>`;return `<rect width="400" height="300" fill="#08130f"/><rect x="52" y="80" width="70" height="90" fill="none" stroke="rgba(238,237,232,.7)"/>${d}<rect x="290" y="120" width="86" height="44" rx="14" fill="${c}"/>`},
+  harness(c){return `<rect width="400" height="300" fill="#0f1012"/>`+[0,1,2,3,4].map(i=>`<rect x="${20+i*74}" y="${120+(i%2?30:-10)}" width="66" height="36" rx="5" fill="${i===4?c:"none"}" stroke="${c}" stroke-width="2"/>`).join("")},
+  rakshak(c){let w="";for(let i=0;i<40;i++){const h=8+Math.abs(Math.sin(i*.7)*Math.cos(i*.23))*80;w+=`<rect x="${30+i*8.5}" y="${150-h/2}" width="4" height="${h}" rx="2" fill="${i>24&&i<32?c:"rgba(238,237,232,.38)"}"/>`}return `<rect width="400" height="300" fill="#13110a"/>${w}`}
+};
+
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const svg = (p, r="xMidYMid slice") => `<svg viewBox="0 0 400 300" preserveAspectRatio="${r}" aria-hidden="true">${ART[p.id](p.color)}</svg>`;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const byId = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
+
+/* tools wall */
+const tiles = (arr, off) => arr.map((t,i) => `<div class="tile s${(i+off)%4+1}">${esc(t)}</div>`).join("");
+const half = Math.ceil(TOOLS.length/2), A = TOOLS.slice(0,half), B = TOOLS.slice(half);
+$("#tr1").innerHTML = tiles(A,0) + tiles(A,0); $("#tr2").innerHTML = tiles(B,2) + tiles(B,2);
+
+/* stats */
+const ST = [["Projects built", PROJECTS.length],["Live products", PROJECTS.filter(p=>p.status==="live").length],["Hackathons entered", 8],["Top-5 finishes", LOG.filter(l=>l[2]).length]];
+$("#stats").innerHTML = ST.map(([l,n]) => `<div><small>${l}</small><strong data-n="${n}">${reduce?n:0}+</strong></div>`).join("");
+
+/* marquee */
+const mw = ["Design","Build","Ship","Automate","Learn"].map(w => `<span>${w}<b>+</b></span>`).join("");
+$("#mq").innerHTML = mw + mw;
+
+/* project cards */
+const F = PROJECTS.filter(p => p.featured);
+$("#pcount").textContent = `${PROJECTS.length} projects`;
+$("#cards").innerHTML = F.map((p,i) => {
+  const links = [p.live && `<a href="${esc(p.live)}" target="_blank" rel="noopener">→| Visit live site</a>`, p.github && `<a href="${esc(p.github)}" target="_blank" rel="noopener">→| Source code</a>`, (!p.live && !p.github && p.note) && `<span>${esc(p.note)}</span>`, (p.live && !p.github && p.note) && `<span>${esc(p.note)}</span>`].filter(Boolean).join("");
+  return `<article class="card" style="--i:${i};--c:${p.color}">
+    <div class="ci">
+      <div class="ct"><span class="cn"><i></i>${esc(p.name)}</span><span class="cd">${String(i+1).padStart(2,"0")} / ${String(F.length).padStart(2,"0")}</span></div>
+      <p class="cdesc">${esc(p.one)}</p>
+      <div class="cf"><small>Category:</small><div>${esc(p.category)}</div></div>
+      <div class="cf"><small>Role:</small><div>${esc(p.role)}</div></div>
+      <div class="cf"><small>Stack:</small><div>${esc(p.stack)}</div></div>
+      <div class="cl">${links}</div>
+    </div>
+    <div class="cimg">${svg(p)}<span class="badge" style="--bc:${STATUS[p.status][1]}">${STATUS[p.status][0]}</span></div>
+  </article>`;
+}).join("");
+$("#more").innerHTML = PROJECTS.filter(p => !p.featured).map(p => `<article class="mc rv"><div class="a">${svg(p)}<span class="badge" style="--bc:${STATUS[p.status][1]}">${STATUS[p.status][0]}</span></div><div><h4>${esc(p.name)}</h4><p>${esc(p.one)}</p><span class="cd">${esc(p.stack)}</span></div></article>`).join("");
+
+/* services */
+const icons = ['<path d="M3 5h18v12H3zM8 21h8M12 17v4"/>','<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/>','<path d="M12 20l8-8-4-4-8 8v4h4zM14 6l4 4"/>'];
+$("#svc").innerHTML = SERVICES.map((s,i) => `<div class="sv rv ${s.hot?"hot":""}" style="--d:${i}"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${icons[i]}</svg><h3>${s.t}</h3><p>${s.d}</p><ul>${s.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><div class="ev"><small>${s.evL}</small><div>${esc(s.ev)}</div><a class="go" href="#contact">Get in touch</a></div></div>`).join("");
+
+/* log */
+$("#logList").innerHTML = LOG.map(([e,r,w,d]) => `<div class="lr rv"><h3>${esc(e)}</h3><span class="res ${w?"win":""}">${esc(r)}</span><p>${esc(d)}</p></div>`).join("");
+
+/* faq */
+const plus = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 12h16"/></svg>';
+$("#faqList").innerHTML = FAQ.map(([q,a],i) => `<div class="qa ${i?"":"open"}"><button type="button" aria-expanded="${!i}" aria-controls="a${i}" id="q${i}">${esc(q)}${plus}</button><div class="ans" id="a${i}" role="region" aria-labelledby="q${i}"><div><p>${esc(a)}</p></div></div></div>`).join("");
+$("#faqList").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; const qa = b.parentElement, o = !qa.classList.contains("open");
+  $$(".qa").forEach(x => { x.classList.remove("open"); x.querySelector("button").setAttribute("aria-expanded","false"); });
+  if (o) { qa.classList.add("open"); b.setAttribute("aria-expanded","true"); } });
+
+/* footer lists */
+$("#fproj").innerHTML = F.map(p => `<li><a href="#projects">${esc(p.name)}</a></li>`).join("");
+$("#fsoc").innerHTML = [["GitHub",CONFIG.github],["LinkedIn",CONFIG.linkedin],["Resume",CONFIG.resume],["Backbench","https://www.backbeench.in"],["Email","mailto:"+CONFIG.email]].filter(x=>x[1]).map(([n,u]) => `<li><a href="${esc(u)}" ${u.startsWith("http")?'target="_blank" rel="noopener"':""}>${n}</a></li>`).join("");
+
+/* now-building card */
+const NOW = PROJECTS.filter(p => p.status === "building");
+let ni = 0;
+const setNow = p => { $("#nowArt").innerHTML = svg(p); $("#nowName").textContent = p.name; $("#nowDesc").textContent = p.category; };
+setNow(NOW[0]);
+if (!reduce) setInterval(() => { const n = $("#nowName"), d = $("#nowDesc"); n.classList.add("x"); d.classList.add("x"); setTimeout(() => { ni = (ni+1) % NOW.length; setNow(NOW[ni]); n.classList.remove("x"); d.classList.remove("x"); }, 300); }, 3000);
+
+/* clock */
+const fmt = new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit"});
+const tick = () => $("#clock").textContent = `Lucknow, IN · ${fmt.format(new Date())} IST`; tick(); setInterval(tick, 30000);
+
+/* fill text: split into words */
+$$(".fill").forEach(el => { el.innerHTML = el.textContent.trim().split(/\s+/).map(w => `<span class="wd">${esc(w)}</span>`).join(" "); });
+const fills = $$(".fill");
+
+/* reveal + count-up */
+const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add("in"); io.unobserve(e.target); }), {threshold:.1});
+$$(".rv").forEach(el => io.observe(el));
+const cio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; cio.unobserve(e.target);
+  const el = e.target, n = +el.dataset.n, t0 = performance.now();
+  const step = t => { const k = Math.min(1,(t-t0)/1100); el.textContent = Math.round(n*(1-(1-k)**3)) + "+"; if (k<1) requestAnimationFrame(step); };
+  requestAnimationFrame(step); }), {threshold:.6});
+if (!reduce) $$("[data-n]").forEach(el => cio.observe(el));
+
+/* scroll: fill words, nav, fab */
+const nav = $("#nav"), fab = $("#fab"), darks = $$(".dk"); let tk = false;
+function onScroll(){ if (tk) return; tk = true; requestAnimationFrame(() => {
+  const vh = innerHeight;
+  if (!reduce) for (const el of fills) { const r = el.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh) continue;
+    const p = Math.min(1, Math.max(0, (vh*.85 - r.top) / (r.height + vh*.35))); const ws = el.children, on = Math.round(p*ws.length*1.15);
+    for (let i=0;i<ws.length;i++) ws[i].classList.toggle("on", i < on); }
+  nav.classList.toggle("sc", scrollY > 10); nav.classList.toggle("ondk", darks.some(d => { const r = d.getBoundingClientRect(); return r.top <= 74 && r.bottom > 74; })); fab.classList.toggle("on", scrollY > 900); tk = false; }); }
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+const navIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) $$("#menuList a").forEach(a => a.classList.toggle("on", a.getAttribute("href")==="#"+e.target.id)); }), {rootMargin:"-45% 0px -50% 0px"});
+$$("main section[id]").forEach(s => navIO.observe(s));
+fab.addEventListener("click", () => scrollTo({top:0,behavior:reduce?"auto":"smooth"}));
+$("#menuBtn").addEventListener("click", () => { const o = nav.classList.toggle("open"); $("#menuBtn").setAttribute("aria-expanded", o); });
+$$("#menuList a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded","false"); }));
+
+/* copy + form */
+const toast = m => { const t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("on"), 2400); };
+const copy = async (txt, ok) => { try { await navigator.clipboard.writeText(txt); toast(ok); return true; } catch { return false; } };
+const copyEmail = async () => { if (!await copy(CONFIG.email, "Email copied")) { const r = document.createRange(); r.selectNodeContents($("#mail")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("#mail").scrollIntoView({block:"center"}); toast("Email selected — press Ctrl/⌘ + C"); } };
+$("#copyTop").addEventListener("click", copyEmail); $("#copyBot").addEventListener("click", copyEmail);
+$("#form").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.target, d = Object.fromEntries(new FormData(f));
+  const bad = ["name","email","msg"].find(k => !String(d[k]||"").trim()) || (!/^\S+@\S+\.\S+$/.test(d.email) && "email");
+  if (bad) { f.elements[bad].focus(); $("#fnote").textContent = bad === "email" && d.email ? "Please enter a valid email address." : "Please fill in the required fields marked *."; return; }
+  const body = `${d.msg}\n\n— ${d.name}${d.org?`, ${d.org}`:""}\n${d.email}`;
+  const href = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Hello from "+d.name)}&body=${encodeURIComponent(body)}`;
+  const a = document.createElement("a"); a.href = href; a.target = "_top"; a.rel = "noopener"; document.body.append(a); a.click(); a.remove();
+  const copied = await copy(`To: ${CONFIG.email}\n\n${body}`, "Message copied too");
+  $("#fnote").textContent = copied ? `Your email app should open now. Your message is also copied, so you can paste it into an email to ${CONFIG.email}.` : `If your email app didn't open, write to ${CONFIG.email}.`;
+});
+}
+</script>
+</body>
+</html>
